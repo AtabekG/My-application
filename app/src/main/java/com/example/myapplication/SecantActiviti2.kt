@@ -14,7 +14,6 @@ class SecantActiviti2 : AppCompatActivity() {
         textView.text = result
         textView2.text = result1
         button1.setOnClickListener {
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             finish()
         }
     }

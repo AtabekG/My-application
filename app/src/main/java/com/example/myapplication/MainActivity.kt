@@ -5,13 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import androidx.core.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_secant_activiti2.*
 import kotlin.random.Random
-
-
-
 
 class MainActivity : AppCompatActivity() {
     private var one: Int = 0
@@ -33,6 +28,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("res","Right $total")
                 intent.putExtra("res1","Wrong $wrong")
                 startActivity(intent)
+                finish()
             }
             (button as Button).text == genRightAnswer().toString() -> {
                 total++
@@ -59,10 +55,12 @@ class MainActivity : AppCompatActivity() {
         }
         txt1.text = one.toString()
         txt3.text = two.toString()
+        textTop.text = inFo()
         genRightAnswer()
         genWrongAnswer()
         setRightRes()
         operRan()
+        inFo()
     }
 
     private fun genRan(start: Int, end:Int) : Int = Random.nextInt(start,end)
@@ -77,14 +75,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun genRightAnswer() : Int {
-        val res = when(belgi){
+        return when(belgi){
             "+" -> one + two
             "-" -> one - two
             "*" -> one * two
             "/" -> one / two
             else -> one + two
         }
-        return res
     }
     private fun genWrongAnswer(){
         val ras = genRightAnswer()
@@ -121,6 +118,15 @@ class MainActivity : AppCompatActivity() {
             2 -> btn3.text = ras.toString()
             3 -> btn4.text = ras.toString()
         else  -> btn1.text = ras.toString()
+        }
+    }
+    private fun inFo() : String{
+        return when(belgi){
+            "+" -> "Ikkisandi qosing"
+            "-" -> "Ikkisandi aling"
+            "*" -> "Ikkisandi kobeyting"
+            "/" -> "Ikkisandi boling"
+            else -> "Ikkisandi boling"
         }
     }
 }
